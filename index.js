@@ -20,20 +20,12 @@ template.innerHTML = `
 export class GocardlessCppCompliance extends HTMLElement {
     constructor() {
         super();
-        this._styles = [];
         const shadowRoot = this.attachShadow({mode: 'open'});
         shadowRoot.appendChild(template.content.cloneNode(true));
-        this.shadowRoot.adoptedStyleSheets([ styles ] );
-    }
-    set styles(value) {
-      this._styles = value;
-    }
-
-    get styles() {
-      return this._styles;
     }
     connectedCallback(){
         console.log('GocardlessCppCompliance added to DOM');
+
         loadParseScript()
             .catch(() => console.error("Something went wrong"))
             .then(() => {
